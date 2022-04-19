@@ -1,9 +1,9 @@
 package com.llocer.ev.cpo;
 
-import com.llocer.ev.ocpp.server.OcppError;
+import com.llocer.ev.ocpp.server.OcppErrorItf;
 import com.llocer.ev.ocpp.server.OcppMsg.OcppErrorCode;
 
-enum CpoError implements OcppError{
+enum CpoError implements OcppErrorItf{
 	eMSPUnreachable( OcppErrorCode.GenericError, "The eMSP is unreachable" );
 	
 	private final OcppErrorCode errorCode;

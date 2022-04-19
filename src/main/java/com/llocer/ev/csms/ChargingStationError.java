@@ -1,9 +1,9 @@
 package com.llocer.ev.csms;
 
-import com.llocer.ev.ocpp.server.OcppError;
+import com.llocer.ev.ocpp.server.OcppErrorItf;
 import com.llocer.ev.ocpp.server.OcppMsg.OcppErrorCode;
 
-enum ChargingStationError implements OcppError{
+enum ChargingStationError implements OcppErrorItf{
 	WaitingBoot( OcppErrorCode.GenericError, "waiting boot message" ),
 	NotImplemented( OcppErrorCode.NotImplemented, "not known " ),
 	NotSupported( OcppErrorCode.NotSupported, "not implemented " );

@@ -426,10 +426,6 @@ public class ChargingStation implements OcppAgent, OAMAgent {
 			break;
 		}
 		
-		if( command.callback != null ) {
-			command.callback.accept( command );
-		}
-		
 		updateState();
 	}
 
@@ -448,11 +444,7 @@ public class ChargingStation implements OcppAgent, OAMAgent {
 			break;
 		}
 		
-		if( command.callback == null ) return;
-		command.callback.accept( command );
-		
 		updateState();
-
 	}
 	
 	/******************************************************************************

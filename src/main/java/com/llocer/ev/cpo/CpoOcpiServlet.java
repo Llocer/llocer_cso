@@ -141,7 +141,7 @@ public class CpoOcpiServlet extends OcpiServlet {
 	}
 
 	/*
-	 * links
+	 * links & credentials
 	 */
 	
 	@Override
