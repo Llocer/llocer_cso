@@ -342,11 +342,6 @@ public class CPO implements OcpiAgent, OAMAgent, CSMS,
 	}
 
 	@Override
-	public int getOcpiPaginationLimit( Identifier module ) {
-		return OcpiConfig.config.ocpiMaxGetLimit;
-	}
-	
-	@Override
 	public Iterator<? extends HasLastUpdated> getOcpiItems( OcpiRequestData oreq ) {
 		switch( oreq.module ) {
 		case CDRS: 
@@ -553,7 +548,7 @@ public class CPO implements OcpiAgent, OAMAgent, CSMS,
 		OcpiToken ocpiToken = this.getToken( ocpiTokenType, tokenId );
 
 		if ( ocpiToken != null ) whitelist = ocpiToken.getWhitelist();
-		if( whitelist == Whitelist.ALLOWED ) whitelist = OcpiConfig.config.allowedWhitelist; 
+		if( whitelist == Whitelist.ALLOWED ) whitelist = this.config.allowed_whitelist ; 
 		
 		OcpiAgentId eMSP = ( ocpiToken == null ? 
 								this.config.default_EMSP : 
