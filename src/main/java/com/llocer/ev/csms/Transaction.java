@@ -1,6 +1,5 @@
 package com.llocer.ev.csms;
 
-import java.time.Instant;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
@@ -10,9 +9,7 @@ import java.util.function.Consumer;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.llocer.common.Log;
-import com.llocer.common.Tuple2;
 import com.llocer.ev.ocpp.msgs20.AuthorizationStatusEnum;
-import com.llocer.ev.ocpp.msgs20.MeasurandEnum;
 import com.llocer.ev.ocpp.msgs20.OcppChargingProfile;
 import com.llocer.ev.ocpp.msgs20.OcppClearChargingProfile;
 import com.llocer.ev.ocpp.msgs20.OcppClearChargingProfileRequest;
@@ -20,7 +17,6 @@ import com.llocer.ev.ocpp.msgs20.OcppCostUpdatedRequest;
 import com.llocer.ev.ocpp.msgs20.OcppEVSE;
 import com.llocer.ev.ocpp.msgs20.OcppGetCompositeScheduleRequest;
 import com.llocer.ev.ocpp.msgs20.OcppIdTokenInfo;
-import com.llocer.ev.ocpp.msgs20.OcppSampledValue;
 import com.llocer.ev.ocpp.msgs20.OcppSetChargingProfileRequest;
 import com.llocer.ev.ocpp.msgs20.OcppTransactionEventRequest;
 import com.llocer.ev.ocpp.msgs20.OcppTransactionEventResponse;
@@ -49,7 +45,7 @@ public class Transaction {
 	@JsonIgnore
 	public ChargingStation cs;
 	
-	List<OcppTransactionEventRequest> events = new LinkedList<OcppTransactionEventRequest>();
+	protected List<OcppTransactionEventRequest> events = new LinkedList<OcppTransactionEventRequest>();
 	private TriggerReasonEnum evState = TriggerReasonEnum.EV_DEPARTED;
 	public OcppTransactionEventRequest startEvent = null;
 //	public OcppTransactionEventRequest endEvent = null;
@@ -154,39 +150,11 @@ public class Transaction {
 	 * measurements and tariff
 	 */
 	
-	static double getValue( OcppSampledValue sampleValue ) {
-		double res = sampleValue.getValue(); 
-		
-		if( sampleValue.getUnitOfMeasure() != null ) {
-			if( sampleValue.getUnitOfMeasure().getMultiplier() != null ) {
-				res *= Math.pow( 10, sampleValue.getUnitOfMeasure().getMultiplier() );
-			}
-
-			if( sampleValue.getUnitOfMeasure().getUnit() == null ) {
-				sampleValue.getUnitOfMeasure().setUnit( "Wh" ); // default
-			}
-			
-			switch( sampleValue.getUnitOfMeasure().getUnit() ) {
-			case "kWh":
-				res *= 1000;
-				break;
-			default:
-				break;
-			}
-		}
-
-		return res;
-	}
 	
 	
 	public Iterator<OcppTransactionEventRequest> eventsIterator() {
 		return events.iterator();
 	}
-	
-	public Iterator<Tuple2<Instant,Double>> samplesIterator( MeasurandEnum measurand ) {
-		return new SampledValueIterator( this, measurand );
-	}
-
 	
 	boolean isFinished() {
 		if( startEvent == null ) return false;

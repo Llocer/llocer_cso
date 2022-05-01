@@ -57,6 +57,11 @@
   			<artifactId>llocer_ocpi</artifactId>
   			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+			<groupId>com.llocer.ev</groupId>
+  			<artifactId>llocer_tarification</artifactId>
+  			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 
 		<dependency>
     		<groupId>io.lettuce</groupId>
