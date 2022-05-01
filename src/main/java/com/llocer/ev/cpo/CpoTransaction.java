@@ -132,7 +132,7 @@ public class CpoTransaction extends Transaction {
 		}
 		
 		List<OcpiTariff> validTariffs = cpo.getApplicableTariffs( this );
-		OcpiTarification.fillCDR( validTariffs, events, session ); // update session fields
+		OcpiTarification.makeCDR( validTariffs, events, session ); // update session fields
 
 		session.setLastUpdated( lastEvent.getTimestamp() );
 		cpo.updateTransaction(this);
@@ -147,7 +147,7 @@ public class CpoTransaction extends Transaction {
 		session.setLastUpdated( end );
 		
 		List<OcpiTariff> validTariffs = cpo.getApplicableTariffs( this );
-		OcpiCdr cdr = OcpiTarification.fillCDR( validTariffs, events, session );
+		OcpiCdr cdr = OcpiTarification.makeCDR( validTariffs, events, session );
 //		Log.dump( "CDR=%s", cdr.toString().replaceAll(",", "\n" ) );
 		cdr.setCdrLocation( location);
 		cpo.addCDR( cdr );
