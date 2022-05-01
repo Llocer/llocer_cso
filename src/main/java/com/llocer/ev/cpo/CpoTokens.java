@@ -8,6 +8,7 @@ import com.llocer.ev.ocpi.msgs22.OcpiToken;
 import com.llocer.ev.ocpi.msgs22.OcpiToken.TokenType;
 import com.llocer.ev.ocpi.msgs22.OcpiToken.Whitelist;
 import com.llocer.ev.ocpp.msgs20.OcppAuthorizationData;
+import com.llocer.ev.tarification.OcpiTypeTools;
 
 public class CpoTokens implements SimpleMap<Tuple2<TokenType, String>, OcpiToken> {
 	

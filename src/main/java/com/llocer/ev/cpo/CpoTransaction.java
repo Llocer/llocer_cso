@@ -28,6 +28,8 @@ import com.llocer.ev.ocpp.msgs20.OcppIdTokenInfo;
 import com.llocer.ev.ocpp.msgs20.OcppRequestStartTransactionRequest;
 import com.llocer.ev.ocpp.msgs20.OcppTransactionEventRequest;
 import com.llocer.ev.ocpp.msgs20.OcppTransactionEventResponse;
+import com.llocer.ev.tarification.OcpiTarification;
+import com.llocer.ev.tarification.OcpiTypeTools;
 
 public class CpoTransaction extends Transaction {
 

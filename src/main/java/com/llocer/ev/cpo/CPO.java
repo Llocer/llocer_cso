@@ -108,6 +108,7 @@ import com.llocer.ev.ocpp.server.OcppEndpoint;
 import com.llocer.ev.ocpp.server.OcppException;
 import com.llocer.ev.server.OAMAgent;
 import com.llocer.ev.server.ServletOAM;
+import com.llocer.ev.tarification.OcpiTypeTools;
 
 class OcpiMakeLinkCommand extends CpoOAMCommand {
 	public OcpiAgentId cpo;
